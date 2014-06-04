@@ -13,12 +13,56 @@
         android:id="@+id/buttonGameCounterText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/game_textview_counterText" />
+        android:text="@string/game_textview_counterText"/>
     
     <TextView
         android:id="@+id/buttonGameCounter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/game_textview_counter" />
+        android:text="@string/game_textview_counter" 
+        android:layout_alignParentRight="true"/>
+    
+    <TextView
+        android:id="@+id/buttonGameTimerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_textview_timerText"
+        android:layout_below="@id/buttonGameCounterText"/>
+    
+    <TextView
+        android:id="@+id/buttonGameTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_textview_timer" 
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/buttonGameCounter"/>
+
+    <ImageView
+        android:id="@+id/imageView1.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_toRightOf="@+id/buttonGameCounterText"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_1.1"/>
+    
+    <ImageView
+        android:id="@+id/imageView1.2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageView1.1"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_1.2"/>
+    
+    <Button 
+        android:id="@+id/ButtonGameBackToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/game_button_backToMain"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

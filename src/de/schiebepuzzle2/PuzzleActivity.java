@@ -12,10 +12,13 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class PuzzleActivity extends Activity implements OnTouchListener{
+public class PuzzleActivity extends Activity implements OnTouchListener, OnClickListener{
 	protected int _clickCounter;
 
 	protected TextView _counter = null;
+	protected RelativeLayout _relativeLayoutGame = null;
+	protected Button _backButton = null;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +28,11 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
 		_clickCounter = 0;
 		
 		_counter = (TextView) findViewById(R.id.buttonGameCounter);
+		_backButton = (Button) findViewById(R.id.ButtonGameBackToMain);
+		_relativeLayoutGame = (RelativeLayout) findViewById(R.id.LayoutGame);
 		
-		RelativeLayout v = (RelativeLayout) findViewById(R.id.LayoutGame);
-		v.setOnTouchListener(this);
+		_relativeLayoutGame.setOnTouchListener(this);
+		_backButton.setOnClickListener(this);
 	}
 
 	@Override
@@ -52,6 +57,13 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
         break;
         }
         return pressed;
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		this.finish();
 		
 	}
 

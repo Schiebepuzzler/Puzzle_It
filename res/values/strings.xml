@@ -13,5 +13,15 @@
     
     <string name="game_textview_counter">0</string>
     <string name="game_textview_counterText">Züge</string>
-
+	<string name="game_textview_timer">00:00</string>
+    <string name="game_textview_timerText">Zeit</string>
+    <string name="game_imageview_1.1">Pic 1.1</string>
+    <string name="game_imageview_1.2">Pic 1.2</string>
+    
+    <string name="game_button_backToMain">Zurück</string>
+    
+    
+    
+    
+    
 </resources>
