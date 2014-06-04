@@ -5,5 +5,17 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_puzzle">PuzzleActivity</string>
+    
+    <string name="main_button_newGame">Neues Spiel</string>
+    <string name="main_button_continueGame">Spiel fortsetzen</string>
+    <string name="main_button_highscore">Highscore</string>
+    <string name="main_button_settings">Einstellungen</string>
+    
+    
+    
+    
+    
+    
+    
 
 </resources>

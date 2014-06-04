@@ -8,9 +8,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    
+    <Button 
+        android:id="@+id/buttonMainNewGame"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="@string/main_button_newGame"
+        android:layout_centerVertical="true"/>
+    
+    <Button 
+        android:id="@+id/buttonMainContinueGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_continueGame"
+        android:layout_below="@id/buttonMainNewGame"/>
+    
+    <Button 
+        android:id="@+id/buttonMainHighscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_highscore"
+        android:layout_below="@id/buttonMainContinueGame"/>
+    
+    <Button 
+        android:id="@+id/buttonMainSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_settings"
+        android:layout_below="@id/buttonMainHighscore"/>
+    
+    
 
 </RelativeLayout>
