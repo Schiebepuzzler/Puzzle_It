@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="de.schiebepuzzle2.PuzzleActivity"
+            android:label="@string/title_activity_puzzle" >
+        </activity>
     </application>
 
 </manifest>
