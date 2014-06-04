@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Schiebepuzzle2</string>
+    <string name="app_name">Puzzle It!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_puzzle">PuzzleActivity</string>
@@ -11,11 +11,7 @@
     <string name="main_button_highscore">Highscore</string>
     <string name="main_button_settings">Einstellungen</string>
     
-    
-    
-    
-    
-    
-    
+    <string name="game_textview_counter">0</string>
+    <string name="game_textview_counterText">Züge</string>
 
 </resources>
