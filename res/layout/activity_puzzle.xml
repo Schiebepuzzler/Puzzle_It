@@ -38,25 +38,92 @@
         android:layout_below="@id/buttonGameCounter"/>
 
     <ImageView
-        android:id="@+id/imageView1.1"
+        android:id="@+id/imageView1.2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonGameTimerText"
-        android:layout_marginLeft="40dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:layout_toRightOf="@+id/buttonGameCounterText"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_1.2"/>
+    
+    <ImageView
+        android:id="@+id/imageView1.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/imageView1.2"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" 
         android:contentDescription="@string/game_imageview_1.1"/>
     
     <ImageView
-        android:id="@+id/imageView1.2"
+        android:id="@+id/imageView1.3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView1.1"
+        android:layout_toRightOf="@+id/imageView1.2"
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_1.2"/>
+        android:contentDescription="@string/game_imageview_1.3"/>
+    
+    <ImageView
+        android:id="@+id/imageView2.2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1.2"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_2.2"/>
+    
+    <ImageView
+        android:id="@+id/imageView2.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1.1"
+        android:layout_toLeftOf="@+id/imageView2.2"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_2.1"/>
+    
+    <ImageView
+        android:id="@+id/imageView2.3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1.3"
+        android:layout_toRightOf="@+id/imageView2.2"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_2.3"/>
+    
+    <ImageView
+        android:id="@+id/imageView3.2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2.2"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_3.2"/>
+    
+    <ImageView
+        android:id="@+id/imageView3.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2.1"
+        android:layout_toLeftOf="@+id/imageView3.2"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_3.1"/>
+    
+    <ImageView
+        android:id="@+id/imageView3.3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2.3"
+        android:layout_toRightOf="@+id/imageView3.2"
+        android:layout_below="@+id/buttonGameTimerText"
+        android:src="@drawable/ic_launcher" 
+        android:contentDescription="@string/game_imageview_3.3"/>
     
     <Button 
         android:id="@+id/ButtonGameBackToMain"
