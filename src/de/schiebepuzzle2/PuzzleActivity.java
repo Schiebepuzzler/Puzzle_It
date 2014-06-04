@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 	
 	protected int puzzleSize;
 	protected Bitmap[][] bitmapSnippets;
+	
+	protected ImageView _imageView;
 	
 	
 	@Override
@@ -44,6 +47,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		_relativeLayoutGame.setOnTouchListener(this);
 		_backButton.setOnClickListener(this);
 		
+		this.carveBitmap();
 	}
 
 	@Override
@@ -94,11 +98,12 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		    Bitmap bitmapSnip;
 		    
 		    // Puzzleteile erstellen und in Array speichern
+		    int startPixelY = 0;
 		    for (int i = 0; i < puzzleSize; i++) {
-		    	int startPixelY = 0;
 		    	
+		    	int startPixelX = 0;
 		    	for (int j = 0; j < puzzleSize; j++){
-		    		int startPixelX = 0;
+		    		
 		    		bitmapSnip = Bitmap.createBitmap(bitmapFull, startPixelX, startPixelY, targetWidth, targetHeight );
 		    		bitmapSnippets[i][j] = bitmapSnip;
 		    		startPixelX += targetWidth;
@@ -106,14 +111,37 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		    	startPixelY += targetHeight;
 		    }
 		    
+		    _imageView = (ImageView) findViewById(R.id.imageView1_1);
+		    _imageView.setImageBitmap(bitmapSnippets[0][0]);
+		    _imageView = (ImageView) findViewById(R.id.imageView1_2);
+		    _imageView.setImageBitmap(bitmapSnippets[1][1]);
+		    _imageView = (ImageView) findViewById(R.id.imageView1_3);
+		    _imageView.setImageBitmap(bitmapSnippets[2][2]);
+		    _imageView = (ImageView) findViewById(R.id.imageView2_1);
+		    _imageView.setImageBitmap(bitmapSnippets[0][1]);
+		    _imageView = (ImageView) findViewById(R.id.imageView2_2);
+		    _imageView.setImageBitmap(bitmapSnippets[1][2]);
+		    _imageView = (ImageView) findViewById(R.id.imageView2_3);
+		    _imageView.setImageBitmap(bitmapSnippets[2][0]);
+		    _imageView = (ImageView) findViewById(R.id.imageView3_1);
+		    _imageView.setImageBitmap(bitmapSnippets[0][2]);
+		    _imageView = (ImageView) findViewById(R.id.imageView3_2);
+		    _imageView.setImageBitmap(bitmapSnippets[1][0]);
+		    _imageView = (ImageView) findViewById(R.id.imageView3_3);
+		    _imageView.setImageBitmap(bitmapSnippets[2][1]);
+		    
 		}
 		catch (Exception ex) {
 			String errorMessage = "Exception in Methode QuarterBitmapActivity::onCreate() bei Bitmap-Verarbeitung aufgetreten: " + ex.getMessage();
 			Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
-		}
-		
-		
+		}	
 		
 	}
+	
+	/**public void setPuzzle (){
+		
+		_imageView
+		
+	}*/
 
 }
