@@ -17,6 +17,13 @@
     <string name="game_textview_timerText">Zeit</string>
     <string name="game_imageview_1.1">Pic 1.1</string>
     <string name="game_imageview_1.2">Pic 1.2</string>
+    <string name="game_imageview_1.3">Pic 1.3</string>
+	<string name="game_imageview_2.1">Pic 2.1</string>
+    <string name="game_imageview_2.2">Pic 2.2</string>
+    <string name="game_imageview_2.3">Pic 2.3</string>
+    <string name="game_imageview_3.1">Pic 3.1</string>
+    <string name="game_imageview_3.2">Pic 3.2</string>
+    <string name="game_imageview_3.3">Pic 3.3</string>
     
     <string name="game_button_backToMain">Zurück</string>
     
