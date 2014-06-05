@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PuzzleActivity extends Activity implements OnTouchListener, OnClickListener{
+	
+	//Deklaration
 	protected int _clickCounter;
 
 	protected TextView _counter = null;
