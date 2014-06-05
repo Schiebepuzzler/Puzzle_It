@@ -38,88 +38,88 @@
         android:layout_below="@id/buttonGameCounter"/>
 
     <ImageView
-        android:id="@+id/imageView1.2"
+        android:id="@+id/imageView0_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_1.2"/>
+        android:contentDescription="@string/game_imageview_0_1"/>
     
     <ImageView
-        android:id="@+id/imageView1.1"
+        android:id="@+id/imageView0_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/imageView1.2"
+        android:layout_toLeftOf="@+id/imageView0_1"
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_1.1"/>
+        android:contentDescription="@string/game_imageview_0_0"/>
     
     <ImageView
-        android:id="@+id/imageView1.3"
+        android:id="@+id/imageView0_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView1.2"
+        android:layout_toRightOf="@+id/imageView0_1"
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_1.3"/>
+        android:contentDescription="@string/game_imageview_0_2"/>
     
     <ImageView
-        android:id="@+id/imageView2.2"
+        android:id="@+id/imageView1_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1.2"
+        android:layout_below="@+id/imageView0_1"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_2.2"/>
+        android:contentDescription="@string/game_imageview_1_1"/>
     
     <ImageView
-        android:id="@+id/imageView2.1"
+        android:id="@+id/imageView1_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1.1"
-        android:layout_toLeftOf="@+id/imageView2.2"
+        android:layout_below="@+id/imageView0_0"
+        android:layout_toLeftOf="@+id/imageView1_1"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_2.1"/>
+        android:contentDescription="@string/game_imageview_1_0"/>
     
     <ImageView
-        android:id="@+id/imageView2.3"
+        android:id="@+id/imageView1_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1.3"
-        android:layout_toRightOf="@+id/imageView2.2"
+        android:layout_below="@+id/imageView0_2"
+        android:layout_toRightOf="@+id/imageView1_1"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_2.3"/>
+        android:contentDescription="@string/game_imageview_1_2"/>
     
     <ImageView
-        android:id="@+id/imageView3.2"
+        android:id="@+id/imageView2_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2.2"
+        android:layout_below="@+id/imageView1_1"
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_3.2"/>
+        android:contentDescription="@string/game_imageview_2_2"/>
     
     <ImageView
-        android:id="@+id/imageView3.1"
+        android:id="@+id/imageView2_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2.1"
-        android:layout_toLeftOf="@+id/imageView3.2"
+        android:layout_below="@+id/imageView1_0"
+        android:layout_toLeftOf="@+id/imageView2_1"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_3.1"/>
+        android:contentDescription="@string/game_imageview_2_1"/>
     
     <ImageView
-        android:id="@+id/imageView3.3"
+        android:id="@+id/imageView2_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2.3"
-        android:layout_toRightOf="@+id/imageView3.2"
+        android:layout_below="@+id/imageView1_2"
+        android:layout_toRightOf="@+id/imageView2_1"
         android:src="@drawable/ic_launcher" 
-        android:contentDescription="@string/game_imageview_3.3"/>
+        android:contentDescription="@string/game_imageview_2_3"/>
     
     <Button 
         android:id="@+id/ButtonGameBackToMain"

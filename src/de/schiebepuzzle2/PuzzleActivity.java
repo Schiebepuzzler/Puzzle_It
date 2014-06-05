@@ -1,5 +1,6 @@
 package de.schiebepuzzle2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 	
 	protected int puzzleSize;
 	protected Bitmap[][] bitmapSnippets;
+	protected ArrayList<Bitmap> bitmapRandom;
 	
 	protected ImageView _imageView;
 	
@@ -96,6 +98,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		    
 		    bitmapSnippets = new Bitmap[puzzleSize][puzzleSize];
 		    Bitmap bitmapSnip;
+		    bitmapRandom = new ArrayList<Bitmap>();
 		    
 		    // Puzzleteile erstellen und in Array speichern
 		    int startPixelY = 0;
@@ -106,31 +109,38 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		    		
 		    		bitmapSnip = Bitmap.createBitmap(bitmapFull, startPixelX, startPixelY, targetWidth, targetHeight );
 		    		bitmapSnippets[i][j] = bitmapSnip;
+		    		bitmapRandom.add(bitmapSnip);
+		    		
+		    		
 		    		startPixelX += targetWidth;
 		    	}
 		    	startPixelY += targetHeight;
 		    }
 		    
-		    _imageView = (ImageView) findViewById(R.id.imageView1_1);
-		    _imageView.setImageBitmap(bitmapSnippets[0][0]);
-		    _imageView = (ImageView) findViewById(R.id.imageView1_2);
-		    _imageView.setImageBitmap(bitmapSnippets[1][1]);
-		    _imageView = (ImageView) findViewById(R.id.imageView1_3);
-		    _imageView.setImageBitmap(bitmapSnippets[2][2]);
-		    _imageView = (ImageView) findViewById(R.id.imageView2_1);
-		    _imageView.setImageBitmap(bitmapSnippets[0][1]);
-		    _imageView = (ImageView) findViewById(R.id.imageView2_2);
-		    _imageView.setImageBitmap(bitmapSnippets[1][2]);
-		    _imageView = (ImageView) findViewById(R.id.imageView2_3);
-		    _imageView.setImageBitmap(bitmapSnippets[2][0]);
-		    _imageView = (ImageView) findViewById(R.id.imageView3_1);
-		    _imageView.setImageBitmap(bitmapSnippets[0][2]);
-		    _imageView = (ImageView) findViewById(R.id.imageView3_2);
-		    _imageView.setImageBitmap(bitmapSnippets[1][0]);
-		    _imageView = (ImageView) findViewById(R.id.imageView3_3);
-		    _imageView.setImageBitmap(bitmapSnippets[2][1]);
+		     
+		    // Puzzleteile zufällig in den ImageViews anordnen
+		    int randomInt;
+		    String imgViewName;
+		    
+		    for (int i = 0; i < puzzleSize; i++){
+			
+		    	for (int j = 0; j < puzzleSize; j++){
+		    		
+			    	randomInt = (int) Math.round((Math.random() * (bitmapRandom.size()-1)));
+			    	Log.d("PuzzleActivity", ""+ randomInt);	
+			    	
+			    	imgViewName = "imageView" + i + "_" + j;
+			    	
+			    	_imageView = (ImageView) findViewById(getResources().getIdentifier(imgViewName, "id", getPackageName()));
+			    	_imageView.setImageBitmap(bitmapRandom.get(randomInt));
+			    	
+			    	bitmapRandom.remove(randomInt);
+		    	}
+	
+		    }
 		    
 		}
+		
 		catch (Exception ex) {
 			String errorMessage = "Exception in Methode QuarterBitmapActivity::onCreate() bei Bitmap-Verarbeitung aufgetreten: " + ex.getMessage();
 			Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
