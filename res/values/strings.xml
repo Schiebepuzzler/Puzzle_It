@@ -15,15 +15,15 @@
     <string name="game_textview_counterText">Züge</string>
 	<string name="game_textview_timer">00:00</string>
     <string name="game_textview_timerText">Zeit</string>
-    <string name="game_imageview_0_0">Pic 0.1</string>
-    <string name="game_imageview_0_1">Pic 0.2</string>
-    <string name="game_imageview_0_2">Pic 0.3</string>
-	<string name="game_imageview_1_0">Pic 1.1</string>
-    <string name="game_imageview_1_1">Pic 1.2</string>
-    <string name="game_imageview_1_2">Pic 1.3</string>
-    <string name="game_imageview_2_1">Pic 2.1</string>
-    <string name="game_imageview_2_2">Pic 2.2</string>
-    <string name="game_imageview_2_3">Pic 2.3</string>
+    <string name="game_imageview_0_0">Pic 0.0</string>
+    <string name="game_imageview_0_1">Pic 0.1</string>
+    <string name="game_imageview_0_2">Pic 0.2</string>
+	<string name="game_imageview_1_0">Pic 1.0</string>
+    <string name="game_imageview_1_1">Pic 1.1</string>
+    <string name="game_imageview_1_2">Pic 1.2</string>
+    <string name="game_imageview_2_1">Pic 2.0</string>
+    <string name="game_imageview_2_2">Pic 2.1</string>
+    <string name="game_imageview_2_3">Pic 2.2</string>
     
     <string name="game_button_backToMain">Zurück</string>
     

@@ -90,7 +90,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		puzzleSize = GlobalConstants.EASY;
 		
 		try {
-			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(), R.drawable.guitar);
+			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(), R.drawable.tits);
 			
 			// Breite + Höhe des Ausschnitts berechnen
 			int targetWidth  = bitmapFull.getWidth () / puzzleSize;
