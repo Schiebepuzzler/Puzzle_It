@@ -3,6 +3,7 @@ package de.activities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import de.logic.GameTimer;
 import de.logic.GlobalConstants;
 import de.schiebepuzzle2.R;
 import android.os.Bundle;
@@ -27,7 +28,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 	
 	//Deklaration
 	protected int _clickCounter;
-
+	protected GameTimer _Time;
+	
 	protected TextView _counter = null;
 	protected RelativeLayout _relativeLayoutGame = null;
 	protected Button _backButton = null;
@@ -44,6 +46,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_puzzle);
 
+		
+		_Time = new GameTimer();
 		_clickCounter = 0;
 		
 		_counter = (TextView) findViewById(R.id.buttonGameCounter);
@@ -67,6 +71,9 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
             
             _clickCounter++;
         	_counter.setText(""+_clickCounter);
+        	
+        	String a = _Time.getformatedTime();
+        	Log.v("formatedTime", a);
         break;
 
         case MotionEvent.ACTION_MOVE:
