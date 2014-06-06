@@ -7,6 +7,7 @@ import de.logic.GameTimer;
 import de.logic.GlobalConstants;
 import de.schiebepuzzle2.R;
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -29,8 +30,11 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 	//Deklaration
 	protected int _clickCounter;
 	protected GameTimer _Time;
+	private Runnable _TimeRefresh;
+	private Handler _handler;
 	
 	protected TextView _counter = null;
+	protected TextView _timer = null;
 	protected RelativeLayout _relativeLayoutGame = null;
 	protected Button _backButton = null;
 	
@@ -46,11 +50,11 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_puzzle);
 
-		
 		_Time = new GameTimer();
 		_clickCounter = 0;
 		
 		_counter = (TextView) findViewById(R.id.buttonGameCounter);
+		_timer = (TextView) findViewById(R.id.buttonGameTimer);
 		_backButton = (Button) findViewById(R.id.ButtonGameBackToMain);
 		_relativeLayoutGame = (RelativeLayout) findViewById(R.id.LayoutGame);
 		
@@ -58,6 +62,43 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		_backButton.setOnClickListener(this);
 		
 		this.carveBitmap();
+		
+		Thread t = new Thread() {
+
+			@Override
+			public void run() {
+				
+				try {
+					
+					while (!isInterrupted()) {
+						
+						Thread.sleep(500);
+						runOnUiThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								_timer.setText(_Time.getformatedTime());
+							}
+						});
+					}
+					
+			    } catch (InterruptedException e) {
+			    	
+			    }
+			}
+		};
+
+		t.start();
+		
+		/*
+		_TimeRefresh = new Runnable() {
+			public void run(){
+				_counter.setText(""+_clickCounter);
+				_handler.postDelayed(this, 1000);
+			}
+		
+		};
+		*/
 	}
 
 	@Override
@@ -71,9 +112,6 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
             
             _clickCounter++;
         	_counter.setText(""+_clickCounter);
-        	
-        	String a = _Time.getformatedTime();
-        	Log.v("formatedTime", a);
         break;
 
         case MotionEvent.ACTION_MOVE:
