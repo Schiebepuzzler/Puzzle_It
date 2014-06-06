@@ -1,16 +1,15 @@
-package de.schiebepuzzle2;
+package de.activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
+import de.logic.GameTimer;
+import de.logic.GlobalConstants;
+import de.schiebepuzzle2.R;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,9 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PuzzleActivity extends Activity implements OnTouchListener, OnClickListener{
+	
+	//Deklaration
 	protected int _clickCounter;
-
+	protected GameTimer _Time;
+	
 	protected TextView _counter = null;
+	protected TextView _timer = null;
 	protected RelativeLayout _relativeLayoutGame = null;
 	protected Button _backButton = null;
 	
@@ -40,9 +43,11 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_puzzle);
 
+		_Time = new GameTimer();
 		_clickCounter = 0;
 		
 		_counter = (TextView) findViewById(R.id.buttonGameCounter);
+		_timer = (TextView) findViewById(R.id.buttonGameTimer);
 		_backButton = (Button) findViewById(R.id.ButtonGameBackToMain);
 		_relativeLayoutGame = (RelativeLayout) findViewById(R.id.LayoutGame);
 		
@@ -50,6 +55,43 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		_backButton.setOnClickListener(this);
 		
 		this.carveBitmap();
+		
+		Thread t = new Thread() {
+
+			@Override
+			public void run() {
+				
+				try {
+					
+					while (!isInterrupted()) {
+						
+						Thread.sleep(500);
+						runOnUiThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								_timer.setText(_Time.getformatedTime());
+							}
+						});
+					}
+					
+			    } catch (InterruptedException e) {
+			    	
+			    }
+			}
+		};
+
+		t.start();
+		
+		/*
+		_TimeRefresh = new Runnable() {
+			public void run(){
+				_counter.setText(""+_clickCounter);
+				_handler.postDelayed(this, 1000);
+			}
+		
+		};
+		*/
 	}
 
 	@Override
@@ -90,7 +132,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		puzzleSize = GlobalConstants.EASY;
 		
 		try {
-			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(), R.drawable.tits);
+			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(), R.drawable.guitar);
 			
 			// Breite + Höhe des Ausschnitts berechnen
 			int targetWidth  = bitmapFull.getWidth () / puzzleSize;

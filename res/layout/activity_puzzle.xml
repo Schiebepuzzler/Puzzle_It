@@ -44,7 +44,7 @@
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_0_1"/>
     
     <ImageView
@@ -54,7 +54,7 @@
         android:layout_toLeftOf="@+id/imageView0_1"
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_marginTop="40dp"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_0_0"/>
     
     <ImageView
@@ -64,7 +64,7 @@
         android:layout_toRightOf="@+id/imageView0_1"
         android:layout_below="@+id/buttonGameTimerText"
         android:layout_marginTop="40dp"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_0_2"/>
     
     <ImageView
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView0_1"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_1_1"/>
     
     <ImageView
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView0_0"
         android:layout_toLeftOf="@+id/imageView1_1"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_1_0"/>
     
     <ImageView
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView0_2"
         android:layout_toRightOf="@+id/imageView1_1"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_1_2"/>
     
     <ImageView
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1_1"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_2_2"/>
     
     <ImageView
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1_0"
         android:layout_toLeftOf="@+id/imageView2_1"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_2_1"/>
     
     <ImageView
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1_2"
         android:layout_toRightOf="@+id/imageView2_1"
-        android:src="@drawable/ic_launcher" 
+        android:src="@drawable/start" 
         android:contentDescription="@string/game_imageview_2_3"/>
     
     <Button 

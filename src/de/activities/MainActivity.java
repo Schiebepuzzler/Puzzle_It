@@ -1,5 +1,6 @@
-package de.schiebepuzzle2;
+package de.activities;
 
+import de.schiebepuzzle2.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

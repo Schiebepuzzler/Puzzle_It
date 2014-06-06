@@ -1,4 +1,4 @@
-package de.schiebepuzzle2;
+package de.logic;
 
 public class GlobalConstants {
 	
