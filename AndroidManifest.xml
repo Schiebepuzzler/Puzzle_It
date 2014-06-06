@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="de.schiebepuzzle2.MainActivity"
+            android:name="de.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.schiebepuzzle2.PuzzleActivity"
+            android:name="de.activities.PuzzleActivity"
             android:label="@string/title_activity_puzzle" >
         </activity>
     </application>

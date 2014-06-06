@@ -1,8 +1,10 @@
-package de.schiebepuzzle2;
+package de.activities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import de.logic.GlobalConstants;
+import de.schiebepuzzle2.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.res.Resources;
