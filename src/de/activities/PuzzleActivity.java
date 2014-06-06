@@ -1,20 +1,15 @@
 package de.activities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import de.logic.GameTimer;
 import de.logic.GlobalConstants;
 import de.schiebepuzzle2.R;
 import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,8 +25,6 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 	//Deklaration
 	protected int _clickCounter;
 	protected GameTimer _Time;
-	private Runnable _TimeRefresh;
-	private Handler _handler;
 	
 	protected TextView _counter = null;
 	protected TextView _timer = null;
