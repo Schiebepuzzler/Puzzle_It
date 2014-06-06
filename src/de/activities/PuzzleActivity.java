@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PuzzleActivity extends Activity implements OnTouchListener, OnClickListener{
+public class PuzzleActivity extends Activity implements OnTouchListener{
 	
 	//Deklaration
 	protected int _clickCounter;
@@ -29,7 +29,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 	protected TextView _counter = null;
 	protected TextView _timer = null;
 	protected RelativeLayout _relativeLayoutGame = null;
-	protected Button _backButton = null;
+
 	
 	protected int puzzleSize;
 	protected Bitmap[][] bitmapSnippets;
@@ -48,11 +48,9 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
 		
 		_counter = (TextView) findViewById(R.id.buttonGameCounter);
 		_timer = (TextView) findViewById(R.id.buttonGameTimer);
-		_backButton = (Button) findViewById(R.id.ButtonGameBackToMain);
 		_relativeLayoutGame = (RelativeLayout) findViewById(R.id.LayoutGame);
 		
 		_relativeLayoutGame.setOnTouchListener(this);
-		_backButton.setOnClickListener(this);
 		
 		this.carveBitmap();
 		
@@ -116,13 +114,6 @@ public class PuzzleActivity extends Activity implements OnTouchListener, OnClick
         break;
         }
         return pressed;
-		
-	}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		this.finish();
 		
 	}
 	
