@@ -20,9 +20,9 @@
     <string name="game_imageview_1_0">Pic 1.0</string>
     <string name="game_imageview_1_1">Pic 1.1</string>
     <string name="game_imageview_1_2">Pic 1.2</string>
-    <string name="game_imageview_2_1">Pic 2.0</string>
-    <string name="game_imageview_2_2">Pic 2.1</string>
-    <string name="game_imageview_2_3">Pic 2.2</string>
+    <string name="game_imageview_2_0">Pic 2.0</string>
+    <string name="game_imageview_2_1">Pic 2.1</string>
+    <string name="game_imageview_2_2">Pic 2.2</string>
     <string name="title_activity_tamplate">TamplateActivity</string>
 
 </resources>

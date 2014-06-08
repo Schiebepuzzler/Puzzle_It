@@ -7,6 +7,7 @@ public class PuzzlePart {
 	private Bitmap puzzleImage;
 	private int[] originPosition;
 	private int[] currentPosition;
+	private boolean isWhitePart = false;
 	
 	public PuzzlePart(Bitmap image){
 		setPuzzleImage(image);
@@ -56,6 +57,28 @@ public class PuzzlePart {
 
 	public void whiteout() {
 		puzzleImage.eraseColor(Color.WHITE);
+		isWhitePart = true;
 		
+	}
+	
+	/**
+	 * @return isWhitePart; true if the PuzzlePart is the White one
+	 */
+	public Boolean isWhitePartSet(){
+		return isWhitePart;
+	}
+	
+	/**
+	 * @return die UrsprungsPosition als String
+	 */
+	public String originPositionToString(){
+		return ("("+originPosition[0]+", "+originPosition[1]+")");
+	}
+	
+	/**
+	 * @return die aktuelle Position als String
+	 */
+	public String currentPositionToString(){
+		return ("("+currentPosition[0]+", "+currentPosition[1]+")");
 	}
 }
