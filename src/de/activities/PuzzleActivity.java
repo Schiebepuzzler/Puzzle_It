@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import de.logic.GameTimer;
 import de.logic.GlobalConstants;
+import de.logic.PuzzlePart;
 import de.schiebepuzzle2.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,8 +34,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
 
 	
 	protected int puzzleSize;
-	protected Bitmap[][] bitmapSnippets;
-	protected ArrayList<Bitmap> bitmapRandom;
+	protected PuzzlePart[][] bitmapSnippets;
+	protected ArrayList<PuzzlePart> bitmapRandom;
 	
 	protected ImageView _imageView;
 	
@@ -129,9 +131,9 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
 			int targetWidth  = bitmapFull.getWidth () / puzzleSize;
 		    int targetHeight = bitmapFull.getHeight() / puzzleSize;
 		    
-		    bitmapSnippets = new Bitmap[puzzleSize][puzzleSize];
-		    Bitmap bitmapSnip;
-		    bitmapRandom = new ArrayList<Bitmap>();
+		    bitmapSnippets = new PuzzlePart[puzzleSize][puzzleSize];
+		    PuzzlePart bitmapSnip;
+		    bitmapRandom = new ArrayList<PuzzlePart>();
 		    
 		    // Puzzleteile erstellen und in Array speichern
 		    int startPixelY = 0;
@@ -140,7 +142,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
 		    	int startPixelX = 0;
 		    	for (int j = 0; j < puzzleSize; j++){
 		    		
-		    		bitmapSnip = Bitmap.createBitmap(bitmapFull, startPixelX, startPixelY, targetWidth, targetHeight );
+		    		bitmapSnip = new PuzzlePart(Bitmap.createBitmap(bitmapFull, startPixelX, startPixelY, targetWidth, targetHeight ));
+		    		bitmapSnip.setOriginPosition(new int[] {i, j});
 		    		bitmapSnippets[i][j] = bitmapSnip;
 		    		bitmapRandom.add(bitmapSnip);
 		    		
@@ -150,6 +153,10 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
 		    	startPixelY += targetHeight;
 		    }
 		    
+		    //Das Puzzle-Teil rechts unten ausgrauen
+			bitmapSnippets[puzzleSize-1][puzzleSize-1].whiteout();
+			Log.d("PuzzleActivity", puzzleSize +"wird ausgegraut");	
+	    	
 		     
 		    // Puzzleteile zufällig in den ImageViews anordnen
 		    int randomInt;
@@ -165,12 +172,15 @@ public class PuzzleActivity extends Activity implements OnTouchListener{
 			    	imgViewName = "imageView" + i + "_" + j;
 			    	
 			    	_imageView = (ImageView) findViewById(getResources().getIdentifier(imgViewName, "id", getPackageName()));
-			    	_imageView.setImageBitmap(bitmapRandom.get(randomInt));
+			    	_imageView.setImageBitmap(bitmapRandom.get(randomInt).getPuzzleImage());
+			    	bitmapRandom.get(randomInt).setCurrentPosition(new int[] {i, j});
 			    	
 			    	bitmapRandom.remove(randomInt);
 		    	}
 	
 		    }
+		   
+		    
 		    
 		}
 		
