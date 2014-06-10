@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name="de.activities.PuzzleActivity"
-            android:label="@string/title_activity_puzzle" >
+            android:label="@string/title_activity_puzzle"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

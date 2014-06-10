@@ -92,6 +92,7 @@
         android:layout_height="fill_parent"
         android:layout_above="@id/footerGame"
         android:layout_below="@id/ContentGameBoard"
+        android:stretchColumns="true"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
