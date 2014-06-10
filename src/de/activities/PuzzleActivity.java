@@ -12,27 +12,38 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PuzzleActivity extends Activity implements OnTouchListener {
+public class PuzzleActivity extends Activity {
 
 	// Deklaration
 	protected int _clickCounter;
 	protected GameTimer _Time;
-
+	protected int _width;
+	
 	protected TextView _counter = null;
 	protected TextView _timer = null;
 	protected RelativeLayout _relativeLayoutGame = null;
+	
+	protected TableLayout _gameTable;
+	protected TableRow _r1;
+	protected TableRow _r2;
+	protected TableRow _r3;
 
+	
 	protected int puzzleSize;
 	protected PuzzlePart[][] bitmapSnippets;
 	protected ArrayList<PuzzlePart> bitmapRandom;
@@ -51,6 +62,12 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 		_timer = (TextView) findViewById(R.id.buttonGameTimer);
 		_relativeLayoutGame = (RelativeLayout) findViewById(R.id.LayoutGame);
 
+		_gameTable = (TableLayout) findViewById(R.id.ContentGameImage);
+		_r1 = (TableRow) findViewById(R.id.GameRow1);
+		_r2 = (TableRow) findViewById(R.id.GameRow2);
+		_r3 = (TableRow) findViewById(R.id.GameRow3);
+		
+		
 		_relativeLayoutGame.setOnTouchListener(new OnSwipeTouchListener(
 				PuzzleActivity.this) {
 			String imgViewName;
@@ -290,6 +307,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 			public boolean onTouch(View v, MotionEvent event) {
 				return gestureDetector.onTouchEvent(event);
 			}
+			
 		});
 		this.carveBitmap();
 
@@ -320,6 +338,19 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 
 		t.start();
 
+		
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		_width = displaymetrics.widthPixels;
+		//int height = dimension.heightPixels;
+		
+		Log.v("Display Breite", ""+_width);
+		//_r1.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+		//_r1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
+		//_r2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
+		//_r3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
+		
+		
 		/*
 		 * _TimeRefresh = new Runnable() { public void run(){
 		 * _counter.setText(""+_clickCounter); _handler.postDelayed(this, 1000);
@@ -329,30 +360,7 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 		 */
 	}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
 
-		boolean pressed = false;
-
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			pressed = true;
-
-			_clickCounter++;
-			_counter.setText("" + _clickCounter);
-			break;
-
-		case MotionEvent.ACTION_MOVE:
-			// User is moving around on the screen
-			break;
-
-		case MotionEvent.ACTION_UP:
-			pressed = false;
-			break;
-		}
-		return pressed;
-
-	}
 
 	public void carveBitmap() {
 
