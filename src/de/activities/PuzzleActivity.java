@@ -104,6 +104,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 								bitmapSnippets[i + 1][j] = tauschpartner;
 								Log.d("onSwipeTop",
 										"PuzzleTeil nach oben verschoben");
+								_clickCounter++;
+								_counter.setText(""+_clickCounter);
 								return;
 							}
 						}
@@ -160,6 +162,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 								bitmapSnippets[i][j - 1] = tauschpartner;
 								Log.d("onSwipeRight",
 										"PuzzleTeil nach rechts verschoben");
+								_clickCounter++;
+								_counter.setText(""+_clickCounter);
 								return;
 							}
 						}
@@ -216,6 +220,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 								bitmapSnippets[i][j + 1] = tauschpartner;
 								Log.d("onSwipeRight",
 										"PuzzleTeil nach links verschoben");
+								_clickCounter++;
+								_counter.setText(""+_clickCounter);
 								return;
 							}
 						}
@@ -272,6 +278,8 @@ public class PuzzleActivity extends Activity implements OnTouchListener {
 								bitmapSnippets[i][j] = tauschpartner;
 								Log.d("onSwipeBottom",
 										"PuzzleTeil nach unten verschoben");
+								_clickCounter++;
+								_counter.setText(""+_clickCounter);
 								return;
 							}
 						}
