@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import de.logic.GameTimer;
 import de.logic.GlobalConstants;
+import de.logic.ImageAdapter;
 import de.logic.OnSwipeTouchListener;
 import de.logic.PuzzlePart;
 import de.schiebepuzzle2.R;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -363,14 +365,29 @@ public class PuzzleActivity extends Activity {
 
 
 	public void carveBitmap() {
-
+		
+		// get intent data
+        Intent intent = getIntent();
+ 
+        // Selected image id
+        int position = intent.getExtras().getInt("id");
+        ImageAdapter imageAdapter = new ImageAdapter(this);
+ 
+        int bitmapID = imageAdapter.mThumbIds[position];
+        
+        
 		// Anzahl der seitlichen Puzzleteile
 		puzzleSize = GlobalConstants.EASY;
 
 		try {
-			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(),
-					R.drawable.guitar);
+			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(), bitmapID);
 
+			if (bitmapFull.getWidth() != bitmapFull.getHeight()){
+				Log.d(getLocalClassName(), "Bild nicht quadratisch");
+				bitmapFull = cropBitmap(bitmapFull);
+				
+			}
+			
 			// Breite + Höhe des Ausschnitts berechnen
 			int targetWidth = bitmapFull.getWidth() / puzzleSize;
 			int targetHeight = bitmapFull.getHeight() / puzzleSize;
@@ -443,6 +460,34 @@ public class PuzzleActivity extends Activity {
 			Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
 		}
 
+	}
+	
+	public Bitmap cropBitmap(Bitmap original) {
+		Bitmap cropBitmap;
+		if (original.getWidth() >= original.getHeight()){
+
+			cropBitmap = Bitmap.createBitmap(
+					original, 
+					original.getWidth()/2 - original.getHeight()/2,
+			     0,
+			     original.getHeight(), 
+			     original.getHeight()
+			     );
+			Log.d(getLocalClassName(), "Bild wurde angepasst");
+
+			}
+		else{
+
+			cropBitmap = Bitmap.createBitmap(
+						original,
+			     0, 
+			     original.getHeight()/2 - original.getWidth()/2,
+			     original.getWidth(),
+			     original.getWidth() 
+			     );
+			Log.d(getLocalClassName(), "Bild wurde angepasst");
+			}
+		return cropBitmap;
 	}
 
 	public PuzzlePart[][] getBitmapSnippets() {

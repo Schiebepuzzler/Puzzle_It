@@ -22,6 +22,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="de.activities.SelectPictureActivity"
+            android:label="@string/title_activity_puzzle"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="de.activities.PuzzleActivity"
             android:label="@string/title_activity_puzzle"
             android:screenOrientation="portrait" >

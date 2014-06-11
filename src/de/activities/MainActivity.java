@@ -25,7 +25,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		
-		Intent intent = new Intent(this, PuzzleActivity.class);
+		Intent intent = new Intent(this, SelectPictureActivity.class);
 		startActivity(intent);
 		
 	}
