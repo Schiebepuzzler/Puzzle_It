@@ -23,6 +23,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -352,6 +353,7 @@ public class PuzzleActivity extends Activity {
 		//_r2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
 		//_r3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
 		
+		//_gameTable.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, _width+"px"));
 		
 		/*
 		 * _TimeRefresh = new Runnable() { public void run(){
