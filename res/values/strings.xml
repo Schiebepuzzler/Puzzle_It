@@ -24,5 +24,6 @@
     <string name="game_imageview_2_1">Pic 2.1</string>
     <string name="game_imageview_2_2">Pic 2.2</string>
     <string name="title_activity_tamplate">TamplateActivity</string>
+    <string name="title_activity_splash">Splash</string>
 
 </resources>
