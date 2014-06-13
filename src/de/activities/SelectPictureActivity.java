@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 
 public class SelectPictureActivity extends Activity{
@@ -18,6 +19,8 @@ public class SelectPictureActivity extends Activity{
 
 	    GridView gridview = (GridView) findViewById(R.id.gridview);
 	    gridview.setAdapter(new ImageAdapter(this));
+	    
+	    Button buttonLoadImage = (Button)findViewById(R.id.loadimage);
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {	
 	    	 @Override
@@ -31,5 +34,16 @@ public class SelectPictureActivity extends Activity{
 	                startActivity(i);
 	            }
 	    });
+	    
+	    buttonLoadImage.setOnClickListener(new Button.OnClickListener(){
+
+	        @Override
+	        public void onClick(View arg0) {
+	         // TODO Auto-generated method stub
+	         Intent select = new Intent(Intent.ACTION_PICK,
+	           android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+	         startActivityForResult(select, 0);
+	        }});
+	        }
 	}
-}
+

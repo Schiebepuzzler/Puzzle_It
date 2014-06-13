@@ -7,7 +7,7 @@
      <!-- Header -->
 
     <RelativeLayout
-        android:id="@+id/headerMain"
+        android:id="@+id/headerSelect"
         style="@style/HeaderFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,10 +54,19 @@
 
         <!-- insert Content here -->
         
+        <Button
+ 		android:id="@+id/loadimage"
+ 		android:layout_width="match_parent"
+ 		android:layout_height="wrap_content"
+ 		android:layout_below="@id/headerMain"
+ 		android:text="@string/load_button"
+ 		/>
+        
         <GridView 
 			android:id="@+id/gridview"
 			android:layout_width="fill_parent" 
 			android:layout_height="fill_parent"
+			android:layout_below="@id/loadimage"
 			android:numColumns="auto_fit"
 			android:columnWidth="90dp"
 			android:horizontalSpacing="10dp"
