@@ -1,5 +1,7 @@
 package de.activities;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import de.logic.GameTimer;
@@ -8,7 +10,9 @@ import de.logic.ImageAdapter;
 import de.logic.OnSwipeTouchListener;
 import de.logic.PuzzlePart;
 import de.schiebepuzzle2.R;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,17 +40,16 @@ public class PuzzleActivity extends Activity {
 	protected int _clickCounter;
 	protected GameTimer _Time;
 	protected int _width;
-	
+
 	protected TextView _counter = null;
 	protected TextView _timer = null;
 	protected RelativeLayout _relativeLayoutGame = null;
-	
+
 	protected TableLayout _gameTable;
 	protected TableRow _r1;
 	protected TableRow _r2;
 	protected TableRow _r3;
 
-	
 	protected int puzzleSize;
 	protected PuzzlePart[][] bitmapSnippets;
 	protected ArrayList<PuzzlePart> bitmapRandom;
@@ -69,8 +72,7 @@ public class PuzzleActivity extends Activity {
 		_r1 = (TableRow) findViewById(R.id.GameRow1);
 		_r2 = (TableRow) findViewById(R.id.GameRow2);
 		_r3 = (TableRow) findViewById(R.id.GameRow3);
-		
-		
+
 		_relativeLayoutGame.setOnTouchListener(new OnSwipeTouchListener(
 				PuzzleActivity.this) {
 			String imgViewName;
@@ -341,6 +343,7 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeBottom",
 										"PuzzleTeil nach unten verschoben");
 								_clickCounter++;
+
 								_counter.setText(""+_clickCounter);
 								
 								//Prüfen ob das Puzzle fertig ist
@@ -366,7 +369,7 @@ public class PuzzleActivity extends Activity {
 			public boolean onTouch(View v, MotionEvent event) {
 				return gestureDetector.onTouchEvent(event);
 			}
-			
+
 		});
 		this.carveBitmap();
 
@@ -397,20 +400,25 @@ public class PuzzleActivity extends Activity {
 
 		t.start();
 
-		
 		DisplayMetrics displaymetrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 		_width = displaymetrics.widthPixels;
-		//int height = dimension.heightPixels;
-		
-		Log.v("Display Breite", ""+_width);
-		//_r1.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
-		//_r1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
-		//_r2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
-		//_r3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, _width/3));
-		
-		//_gameTable.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, _width+"px"));
-		
+		// int height = dimension.heightPixels;
+
+		Log.v("Display Breite", "" + _width);
+		// _r1.setLayoutParams(new
+		// LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
+		// _r1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+		// _width/3));
+		// _r2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+		// _width/3));
+		// _r3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+		// _width/3));
+
+		// _gameTable.setLayoutParams(new
+		// LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+		// _width+"px"));
+
 		/*
 		 * _TimeRefresh = new Runnable() { public void run(){
 		 * _counter.setText(""+_clickCounter); _handler.postDelayed(this, 1000);
@@ -420,32 +428,65 @@ public class PuzzleActivity extends Activity {
 		 */
 	}
 
+	@Override
+	protected void onStop() {
 
+		super.onStop();
+
+		if (bitmapFull != null) {
+			bitmapFull.recycle();
+		}
+
+	}
+
+	Bitmap bitmapFull = null;
 
 	public void carveBitmap() {
-		
+
 		// get intent data
-        Intent intent = getIntent();
- 
-        // Selected image id
-        int position = intent.getExtras().getInt("id");
-        ImageAdapter imageAdapter = new ImageAdapter(this);
- 
-        int bitmapID = imageAdapter.mThumbIds[position];
-        
-        
+		Intent intent = getIntent();
+
+		int position = 0;
+		position = intent.getExtras().getInt("id");
+
+		if (position != 0) {
+
+			// Selected image id
+
+			ImageAdapter imageAdapter = new ImageAdapter(this);
+
+			int bitmapID = imageAdapter.mThumbIds[position];
+
+			bitmapFull = BitmapFactory.decodeResource(getResources(), bitmapID);
+		}
+
+		else {
+
+			try {
+				Uri imageUri = Uri.parse(intent.getStringExtra("imageUri"));
+				bitmapFull = MediaStore.Images.Media.getBitmap(
+						this.getContentResolver(), imageUri);
+				
+				
+	
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
 		// Anzahl der seitlichen Puzzleteile
 		puzzleSize = GlobalConstants.EASY;
 
 		try {
-			Bitmap bitmapFull = BitmapFactory.decodeResource(getResources(), bitmapID);
 
-			if (bitmapFull.getWidth() != bitmapFull.getHeight()){
+			if (bitmapFull.getWidth() != bitmapFull.getHeight()) {
 				Log.d(getLocalClassName(), "Bild nicht quadratisch");
 				bitmapFull = cropBitmap(bitmapFull);
-				
+
 			}
-			
+
 			// Breite + Höhe des Ausschnitts berechnen
 			int targetWidth = bitmapFull.getWidth() / puzzleSize;
 			int targetHeight = bitmapFull.getHeight() / puzzleSize;
@@ -519,32 +560,23 @@ public class PuzzleActivity extends Activity {
 		}
 
 	}
-	
+
 	public Bitmap cropBitmap(Bitmap original) {
 		Bitmap cropBitmap;
-		if (original.getWidth() >= original.getHeight()){
+		if (original.getWidth() >= original.getHeight()) {
 
-			cropBitmap = Bitmap.createBitmap(
-					original, 
-					original.getWidth()/2 - original.getHeight()/2,
-			     0,
-			     original.getHeight(), 
-			     original.getHeight()
-			     );
+			cropBitmap = Bitmap.createBitmap(original, original.getWidth() / 2
+					- original.getHeight() / 2, 0, original.getHeight(),
+					original.getHeight());
 			Log.d(getLocalClassName(), "Bild wurde angepasst");
 
-			}
-		else{
+		} else {
 
-			cropBitmap = Bitmap.createBitmap(
-						original,
-			     0, 
-			     original.getHeight()/2 - original.getWidth()/2,
-			     original.getWidth(),
-			     original.getWidth() 
-			     );
+			cropBitmap = Bitmap.createBitmap(original, 0, original.getHeight()
+					/ 2 - original.getWidth() / 2, original.getWidth(),
+					original.getWidth());
 			Log.d(getLocalClassName(), "Bild wurde angepasst");
-			}
+		}
 		return cropBitmap;
 	}
 
