@@ -506,13 +506,39 @@ public class PuzzleActivity extends Activity {
 				
 				**/
 				
-				Display display = getWindowManager().getDefaultDisplay(); 
+				//Seitenverhältnis des geladenen Bildes auslesen und berechnen
+				double aspectRatioH = bitmapStorage.getHeight();
+			    double aspectRatioW = bitmapStorage.getWidth();
+			    double ratio = aspectRatioH/aspectRatioW;
+			    
+			    // Paramter der Bildschirmgröße und Verhältnis des Bildes ermitteln
+			    Display display = getWindowManager().getDefaultDisplay(); 
 				@SuppressWarnings("deprecation")
-				int width = display.getWidth(); 
+				int width_disp = display.getWidth(); 
+				int width = (int) (width_disp * ratio);
 				@SuppressWarnings("deprecation")
-				int height = display.getHeight();  
+				int height_disp = display.getHeight();  
+				int height = (int) (height_disp * ratio);
 				boolean filter = true;
 				
+				
+				//Ausgabe der Bildkonvertierung-Paramter
+				Log.d("Bildgröße", "Ratio "
+						+ aspectRatioH
+						+ " x "
+						+ aspectRatioW
+						+ " = "
+						+ ratio
+						+ "  Displaymaße "
+						+ height_disp
+						+ " x "
+						+ width_disp
+						+ "  Angepasst "
+						+ height
+						+ " x "
+						+ width);
+				
+				//Bild mit ermittelten Paramtern anpassen
 				bitmapFull = Bitmap.createScaledBitmap(bitmapStorage, width,
 			            height, filter);
 				
