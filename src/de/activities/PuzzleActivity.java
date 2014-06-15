@@ -3,9 +3,12 @@ package de.activities;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import de.logic.DatabaseHandler;
 import de.logic.GameTimer;
 import de.logic.GlobalConstants;
+import de.logic.HighscoreDataset;
 import de.logic.ImageAdapter;
 import de.logic.OnSwipeTouchListener;
 import de.logic.PuzzlePart;
@@ -56,11 +59,32 @@ public class PuzzleActivity extends Activity {
 
 	protected ImageView _imageView;
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_puzzle);
 
+		DatabaseHandler db = new DatabaseHandler(this);
+		
+		/*
+		 * How to use Database
+		Log.d("Insert: ", "Inserting .."); 
+		db.addHighscoreDataset(new HighscoreDataset("Marian", 4, "01:00"));
+		db.addHighscoreDataset(new HighscoreDataset("Marcel", 6, "01:12"));
+		db.addHighscoreDataset(new HighscoreDataset("Mirko", 8, "01:30"));
+		
+		
+		Log.d("Read: ", "Reading..");
+		List<HighscoreDataset> scoreSets = db.getAllHighscoreDatasets();       
+        
+        for (HighscoreDataset ss : scoreSets) {
+            String log = "Id: "+ss.getId()+" ,Name: " + ss.getName() + " ,Moves: " + ss.getMoves() + " ,Time:" + ss.getTime();
+                // Writing HighscoreDatasets to log
+        Log.d("Name: ", log);
+		*/
+		
 		_Time = new GameTimer();
 		_clickCounter = 0;
 
@@ -424,9 +448,9 @@ public class PuzzleActivity extends Activity {
 		 * _counter.setText(""+_clickCounter); _handler.postDelayed(this, 1000);
 		 * }
 		 * 
-		 * };
 		 */
-	}
+        };
+	
 
 	@Override
 	protected void onStop() {
