@@ -127,7 +127,21 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeTop",
 										"PuzzleTeil nach oben verschoben");
 								_clickCounter++;
-								_counter.setText("" + _clickCounter);
+								_counter.setText(""+_clickCounter);
+								
+								//Prüfen ob das Puzzle fertig ist
+								if(isFinished(bitmapSnippets)){
+									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
+									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+									_imageView = (ImageView) findViewById(getResources()
+											.getIdentifier(imgViewName, "id",
+													getPackageName()));
+									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
+											.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this, "feddisch",
+											Toast.LENGTH_SHORT).show();
+								}
 								return;
 							}
 						}
@@ -185,7 +199,21 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeRight",
 										"PuzzleTeil nach rechts verschoben");
 								_clickCounter++;
-								_counter.setText("" + _clickCounter);
+								_counter.setText(""+_clickCounter);
+								
+								//Prüfen ob das Puzzle fertig ist
+								if(isFinished(bitmapSnippets)){
+									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
+									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+									_imageView = (ImageView) findViewById(getResources()
+											.getIdentifier(imgViewName, "id",
+													getPackageName()));
+									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
+											.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this, "feddisch",
+											Toast.LENGTH_SHORT).show();
+								}
 								return;
 							}
 						}
@@ -243,7 +271,21 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeRight",
 										"PuzzleTeil nach links verschoben");
 								_clickCounter++;
-								_counter.setText("" + _clickCounter);
+								_counter.setText(""+_clickCounter);
+								
+								//Prüfen ob das Puzzle fertig ist
+								if(isFinished(bitmapSnippets)){
+									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
+									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+									_imageView = (ImageView) findViewById(getResources()
+											.getIdentifier(imgViewName, "id",
+													getPackageName()));
+									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
+											.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this, "feddisch",
+											Toast.LENGTH_SHORT).show();
+								}
 								return;
 							}
 						}
@@ -301,7 +343,22 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeBottom",
 										"PuzzleTeil nach unten verschoben");
 								_clickCounter++;
-								_counter.setText("" + _clickCounter);
+
+								_counter.setText(""+_clickCounter);
+								
+								//Prüfen ob das Puzzle fertig ist
+								if(isFinished(bitmapSnippets)){
+									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
+									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+									_imageView = (ImageView) findViewById(getResources()
+											.getIdentifier(imgViewName, "id",
+													getPackageName()));
+									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
+											.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this, "feddisch",
+											Toast.LENGTH_SHORT).show();
+									}
 								return;
 							}
 						}
@@ -525,6 +582,22 @@ public class PuzzleActivity extends Activity {
 
 	public PuzzlePart[][] getBitmapSnippets() {
 		return this.bitmapSnippets;
+	}
+	
+	public Boolean isFinished(PuzzlePart[][] puzzleTeile){
+		for(int i=0; i<puzzleTeile[0].length;i++){
+			for(int j=0; j<puzzleTeile[0].length;j++){
+				if(puzzleTeile[i][j].isOnOriginPosition()){
+					Log.d("isFinished", "puzzleTeil ist an richtiger Stelle");
+				}else{
+					Log.d("isFinished", "mindestens ein puzzleTeil ist nicht an richtiger Stelle");
+					return false;
+				}
+				
+			}
+		}
+		
+		return true;
 	}
 
 	/**

@@ -5,6 +5,7 @@ import android.graphics.Color;
 
 public class PuzzlePart {
 	private Bitmap puzzleImage;
+	private Bitmap whitePartImage;
 	private int[] originPosition;
 	private int[] currentPosition;
 	private boolean isWhitePart = false;
@@ -25,6 +26,7 @@ public class PuzzlePart {
 	 */
 	public void setPuzzleImage(Bitmap puzzleImage) {
 		this.puzzleImage = puzzleImage;
+		this.whitePartImage = Bitmap.createBitmap(puzzleImage);
 	}
 
 	/**
@@ -61,6 +63,12 @@ public class PuzzlePart {
 		
 	}
 	
+	public void rewhite() {
+		puzzleImage = whitePartImage;
+		isWhitePart = false;
+		
+	}
+	
 	/**
 	 * @return isWhitePart; true if the PuzzlePart is the White one
 	 */
@@ -80,5 +88,14 @@ public class PuzzlePart {
 	 */
 	public String currentPositionToString(){
 		return ("("+currentPosition[0]+", "+currentPosition[1]+")");
+	}
+	
+	public Boolean isOnOriginPosition(){
+		if (originPosition[0] == currentPosition[0]){
+			if (originPosition[1] == currentPosition[1]){
+				return true;
+			}
+		}
+		return false;
 	}
 }
