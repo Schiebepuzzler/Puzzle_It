@@ -17,17 +17,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -487,9 +492,29 @@ public class PuzzleActivity extends Activity {
 		else {
 
 			try {
+				Bitmap bitmapStorage = null;
 				Uri imageUri = Uri.parse(intent.getStringExtra("imageUri"));
-				bitmapFull = MediaStore.Images.Media.getBitmap(
+				bitmapStorage = MediaStore.Images.Media.getBitmap(
 						this.getContentResolver(), imageUri);
+				
+				/** Erst ab API Level 13
+				Display display = getWindowManager().getDefaultDisplay();
+				Point size = new Point();
+				display.getSize(size);
+				int width = size.x;
+				int height = size.y;
+				
+				**/
+				
+				Display display = getWindowManager().getDefaultDisplay(); 
+				@SuppressWarnings("deprecation")
+				int width = display.getWidth(); 
+				@SuppressWarnings("deprecation")
+				int height = display.getHeight();  
+				boolean filter = true;
+				
+				bitmapFull = Bitmap.createScaledBitmap(bitmapStorage, width,
+			            height, filter);
 				
 				
 	
