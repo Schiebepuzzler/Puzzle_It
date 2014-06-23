@@ -11,8 +11,9 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
-	protected Button _button_newGame = null;
-
+	protected Button _button_newGame;
+	protected Button _button_Highscore;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,13 +21,24 @@ public class MainActivity extends Activity implements OnClickListener{
 
 		_button_newGame = (Button) findViewById(R.id.buttonMainNewGame);
 		_button_newGame.setOnClickListener(this);
+		
+		_button_Highscore = (Button) findViewById(R.id.buttonMainHighscore);
+		_button_Highscore.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		
-		Intent intent = new Intent(this, SelectPictureActivity.class);
-		startActivity(intent);
+		switch (v.getId()){
+		case R.id.buttonMainNewGame:
+			Intent intent1 = new Intent(this, SelectPictureActivity.class);
+			startActivity(intent1);
+			break;
+		case R.id.buttonMainHighscore:
+			Intent intent2 = new Intent(this, HighscoreActivity.class);
+			startActivity(intent2);
+			break;
+		}
 		
 	}
 

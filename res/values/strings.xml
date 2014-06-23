@@ -26,5 +26,6 @@
     <string name="title_activity_tamplate">TamplateActivity</string>
     <string name="title_activity_splash">Splash</string>
     <string name="load_button">Eigenes Foto laden</string>
+    <string name="title_activity_highscore">HighscoreActivity</string>
 
 </resources>
