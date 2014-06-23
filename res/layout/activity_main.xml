@@ -58,18 +58,12 @@
             android:layout_centerVertical="true"
             android:text="@string/main_button_newGame"/>
 
-        <Button
-            android:id="@+id/buttonMainContinueGame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/buttonMainNewGame"
-            android:text="@string/main_button_continueGame" />
 
         <Button
             android:id="@+id/buttonMainHighscore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/buttonMainContinueGame"
+            android:layout_below="@id/buttonMainNewGame"
             android:text="@string/main_button_highscore" />
 
         <Button
