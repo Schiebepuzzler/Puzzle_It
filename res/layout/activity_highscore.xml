@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HighscoreActivity" >
+
+    <!-- Header -->
+
+    <RelativeLayout
+        android:id="@+id/headerHighscore"
+        style="@style/HeaderFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            style="@style/HeaderFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/app_name" />
+    </RelativeLayout>
+
+    <!-- Footer -->
+
+    <RelativeLayout
+        android:id="@+id/footerHighscore"
+        style="@style/HeaderFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <TextView
+            style="@style/HeaderFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/copyright" />
+    </RelativeLayout>
+
+    <!-- Content -->
+
+    <RelativeLayout
+        android:id="@+id/ContentHighscore"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footerHighscore"
+        android:layout_below="@id/headerHighscore"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/firstPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="@string/highscore_1" />
+
+        <TextView
+            android:id="@+id/secondPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/firstPlace"
+            android:text="@string/highscore_2" />
+
+        <TextView
+            android:id="@+id/thirdPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/secondPlace"
+            android:text="@string/highscore_3" />
+
+        <TextView
+            android:id="@+id/fourthPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/thirdPlace"
+            android:text="@string/highscore_4" />
+
+        <TextView
+            android:id="@+id/fifthPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fourthPlace"
+            android:text="@string/highscore_5" />
+    </RelativeLayout>
+
+</RelativeLayout>

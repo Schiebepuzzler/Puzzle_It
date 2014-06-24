@@ -3,129 +3,203 @@
     android:id="@+id/LayoutGame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".PuzzleActivity" >
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/buttonGameCounterText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/game_textview_counterText"/>
-    
-    <TextView
-        android:id="@+id/buttonGameCounter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/game_textview_counter" 
-        android:layout_alignParentRight="true"/>
-    
-    <TextView
-        android:id="@+id/buttonGameTimerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/game_textview_timerText"
-        android:layout_below="@id/buttonGameCounterText"/>
-    
-    <TextView
-        android:id="@+id/buttonGameTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/game_textview_timer" 
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/buttonGameCounter"/>
+    <!-- Header pp-->
 
-    <ImageView
-        android:id="@+id/imageView0_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGameTimerText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_0_1"/>
-    
-    <ImageView
-        android:id="@+id/imageView0_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/imageView0_1"
-        android:layout_below="@+id/buttonGameTimerText"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_0_0"/>
-    
-    <ImageView
-        android:id="@+id/imageView0_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageView0_1"
-        android:layout_below="@+id/buttonGameTimerText"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_0_2"/>
-    
-    <ImageView
-        android:id="@+id/imageView1_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView0_1"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_1_1"/>
-    
-    <ImageView
-        android:id="@+id/imageView1_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView0_0"
-        android:layout_toLeftOf="@+id/imageView1_1"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_1_0"/>
-    
-    <ImageView
-        android:id="@+id/imageView1_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView0_2"
-        android:layout_toRightOf="@+id/imageView1_1"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_1_2"/>
-    
-    <ImageView
-        android:id="@+id/imageView2_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1_1"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_2_2"/>
-    
-    <ImageView
-        android:id="@+id/imageView2_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1_0"
-        android:layout_toLeftOf="@+id/imageView2_1"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_2_1"/>
-    
-    <ImageView
-        android:id="@+id/imageView2_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1_2"
-        android:layout_toRightOf="@+id/imageView2_1"
-        android:src="@drawable/start" 
-        android:contentDescription="@string/game_imageview_2_3"/>
-    
-    <Button 
-        android:id="@+id/ButtonGameBackToMain"
+    <RelativeLayout
+        android:id="@+id/headerGame"
+        style="@style/HeaderFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/game_button_backToMain"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentTop="true">
+
+        <TextView
+            style="@style/HeaderFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/app_name" />
+    </RelativeLayout>
+
+    <!-- Footer -->
+
+    <RelativeLayout
+        android:id="@+id/footerGame"
+        style="@style/HeaderFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <TextView
+            style="@style/HeaderFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="@string/copyright" />
+    </RelativeLayout>
+
+    <!-- Content -->
+
+    <TableLayout
+        android:id="@+id/ContentGameBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerGame"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/buttonGameCounterText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/game_textview_counterText" />
+
+            <TextView
+                android:id="@+id/buttonGameCounter"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/game_textview_counter" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/buttonGameTimerText"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/game_textview_timerText" />
+
+            <TextView
+                android:id="@+id/buttonGameTimer"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="@string/game_textview_timer" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/ContentGameImage"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_below="@+id/ContentGameBoard"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:baselineAligned="false"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:showDividers="none"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:id="@+id/GameRow1"
+            android:layout_height="match_parent"
+            android:layout_weight=".33333"
+            android:background="@color/white"
+            android:gravity="bottom" >
+
+            <ImageView
+                android:id="@+id/imageView0_0"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_0_0"
+                android:src="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/imageView0_1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_0_1"
+                android:src="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/imageView0_2"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_0_2"
+                android:src="@drawable/start" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/GameRow2"
+            android:layout_height="match_parent"
+            android:layout_weight=".33333"
+            android:background="@color/white"
+            android:gravity="center_vertical" >
+
+            <ImageView
+                android:id="@+id/imageView1_0"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_1_0"
+                android:src="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/imageView1_1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_1_1"
+                android:src="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/imageView1_2"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_1_2"
+                android:src="@drawable/start" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/GameRow3"
+            android:layout_height="match_parent"
+            android:layout_weight=".33333"
+            android:background="@color/white"
+            android:gravity="top" >
+
+            <ImageView
+                android:id="@+id/imageView2_0"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_2_1"
+                android:src="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/imageView2_1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_2_1"
+                android:src="@drawable/start" />
+
+            <ImageView
+                android:id="@+id/imageView2_2"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight=".33333"
+                android:contentDescription="@string/game_imageview_2_2"
+                android:src="@drawable/start" />
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>

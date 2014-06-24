@@ -5,30 +5,34 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_puzzle">PuzzleActivity</string>
-    
+    <string name="copyright">&#169; Puzzle It! Germany Ltd.</string>
     <string name="main_button_newGame">Neues Spiel</string>
     <string name="main_button_continueGame">Spiel fortsetzen</string>
     <string name="main_button_highscore">Highscore</string>
     <string name="main_button_settings">Einstellungen</string>
-    
     <string name="game_textview_counter">0</string>
     <string name="game_textview_counterText">Züge</string>
-	<string name="game_textview_timer">00:00</string>
+    <string name="game_textview_timer">00:00</string>
     <string name="game_textview_timerText">Zeit</string>
     <string name="game_imageview_0_0">Pic 0.0</string>
     <string name="game_imageview_0_1">Pic 0.1</string>
     <string name="game_imageview_0_2">Pic 0.2</string>
-	<string name="game_imageview_1_0">Pic 1.0</string>
+    <string name="game_imageview_1_0">Pic 1.0</string>
     <string name="game_imageview_1_1">Pic 1.1</string>
     <string name="game_imageview_1_2">Pic 1.2</string>
-    <string name="game_imageview_2_1">Pic 2.0</string>
-    <string name="game_imageview_2_2">Pic 2.1</string>
-    <string name="game_imageview_2_3">Pic 2.2</string>
-    
-    <string name="game_button_backToMain">Zurück</string>
-    
-    
-    
+    <string name="game_imageview_2_0">Pic 2.0</string>
+    <string name="game_imageview_2_1">Pic 2.1</string>
+    <string name="game_imageview_2_2">Pic 2.2</string>
+    <string name="title_activity_tamplate">TamplateActivity</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="load_button">Eigenes Foto laden</string>
+    <string name="title_activity_highscore">HighscoreActivity</string>
+	<string name="highscore_1">1. Platz</string>
+    <string name="highscore_2">2. Platz</string>
+    <string name="highscore_3">3. Platz</string>
+    <string name="highscore_4">4. Platz</string>
+    <string name="highscore_5">5. Platz</string>
+    <string name="alert_gibNamenEin">Bitte gib deinen Namen ein:</string>
     
     
 </resources>
