@@ -42,8 +42,7 @@ public class HighscoreDataset {
 
 	@Override
 	public String toString() {
-		return "HighscoreDataset [id=" + id + ", name=" + name + ", moves="
-				+ moves + ", time=" + time + "]";
+		return name + ": " + moves + "Züge & " + time + " Minuten";
 	}
 
 

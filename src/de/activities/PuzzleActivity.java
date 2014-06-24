@@ -227,8 +227,7 @@ public class PuzzleActivity extends Activity {
 									public void onClick(DialogInterface dialog,
 											int id) {
 										// get user input and set it to result
-										_returnValue = input.getText()
-												.toString();
+										_returnValue = (String) input.getText().toString();
 									}
 								})
 						.setNegativeButton("Cancel",

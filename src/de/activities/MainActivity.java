@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		DatabaseHandler db = new DatabaseHandler(this);
 
-		//db.addHighscoreDataset(new HighscoreDataset("N.N.1", 0, null));
+		db.addHighscoreDataset(new HighscoreDataset("N.N.1", 0, null));
 		//db.addHighscoreDataset(new HighscoreDataset("N.N.2", 0, null));
 		//db.addHighscoreDataset(new HighscoreDataset("N.N.3", 0, null));
 		//db.addHighscoreDataset(new HighscoreDataset("N.N.4", 0, null));

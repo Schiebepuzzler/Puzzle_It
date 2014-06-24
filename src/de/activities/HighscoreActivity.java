@@ -34,51 +34,50 @@ public class HighscoreActivity extends Activity {
 		_fifthPlace = (TextView) findViewById(R.id.fifthPlace);
 
 		try {
-		for (int i = 0; i < 5; i++) {
-			switch (i) {
+			for (int i = 0; i < 5; i++) {
+				switch (i) {
 
-			case 0:
-				_firstPlace.setText(_dbHandler.getHighscoreDataset(1)
-						.toString());
+				case 0:
+					_firstPlace.setText("1.Platz: "
+							+ _dbHandler.getHighscoreDataset(1).toString());
 
-				break;
-			case 1:
-				_secondPlace.setText(_dbHandler.getHighscoreDataset(2)
-						.toString());
+					break;
+				case 1:
+					_secondPlace.setText("2.Platz: "
+							+ _dbHandler.getHighscoreDataset(2).toString());
 
-				break;
-			case 2:
-				_thirdPlace.setText(_dbHandler.getHighscoreDataset(3)
-						.toString());
+					break;
+				case 2:
+					_thirdPlace.setText("3.Platz: "
+							+ _dbHandler.getHighscoreDataset(3).toString());
 
-				break;
-			case 3:
-				_fourthPlace.setText(_dbHandler.getHighscoreDataset(4)
-						.toString());
+					break;
+				case 3:
+					_fourthPlace.setText("4.Platz: "
+							+ _dbHandler.getHighscoreDataset(4).toString());
 
-				break;
-			case 4:
-				_fifthPlace.setText(_dbHandler.getHighscoreDataset(5)
-						.toString());
-				break;
-			default:
-				break;
+					break;
+				case 4:
+					_fifthPlace.setText("5.Platz: "
+							+ _dbHandler.getHighscoreDataset(5).toString());
+					break;
+				default:
+					break;
+				}
+
 			}
-			
-		}
-		
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			Log.e("ERROR", e.getMessage());
 		}
-		
-/*
-		_firstPlace.setText(_dbHandler.getHighscoreDataset(1).toString());
-		_secondPlace.setText(_dbHandler.getHighscoreDataset(2).toString());
-		_thirdPlace.setText(_dbHandler.getHighscoreDataset(3).toString());
-		_fourthPlace.setText(_dbHandler.getHighscoreDataset(4).toString());
-		_fifthPlace.setText(_dbHandler.getHighscoreDataset(5).toString());
 
-*/
+		/*
+		 * _firstPlace.setText(_dbHandler.getHighscoreDataset(1).toString());
+		 * _secondPlace.setText(_dbHandler.getHighscoreDataset(2).toString());
+		 * _thirdPlace.setText(_dbHandler.getHighscoreDataset(3).toString());
+		 * _fourthPlace.setText(_dbHandler.getHighscoreDataset(4).toString());
+		 * _fifthPlace.setText(_dbHandler.getHighscoreDataset(5).toString());
+		 */
 	}
 
 }
