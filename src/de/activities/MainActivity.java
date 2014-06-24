@@ -1,5 +1,7 @@
 package de.activities;
 
+import de.logic.DatabaseHandler;
+import de.logic.HighscoreDataset;
 import de.schiebepuzzle2.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -24,6 +26,14 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		_button_Highscore = (Button) findViewById(R.id.buttonMainHighscore);
 		_button_Highscore.setOnClickListener(this);
+		
+		DatabaseHandler db = new DatabaseHandler(this);
+		db.addHighscoreDataset(new HighscoreDataset("N.N.", 0, null));
+		db.addHighscoreDataset(new HighscoreDataset("N.N.", 0, null));
+		db.addHighscoreDataset(new HighscoreDataset("N.N.", 0, null));
+		db.addHighscoreDataset(new HighscoreDataset("N.N.", 0, null));
+		db.addHighscoreDataset(new HighscoreDataset("N.N.", 0, null));
+
 	}
 
 	@Override

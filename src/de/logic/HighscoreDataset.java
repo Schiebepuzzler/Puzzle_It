@@ -2,10 +2,10 @@ package de.logic;
 
 public class HighscoreDataset {
 
-	int id;
-	String name;
-	int moves;
-	String time;
+	private int id;
+	private String name;
+	private int moves;
+	private String time;
 	
 	/**
 	 * @param name
@@ -37,6 +37,13 @@ public class HighscoreDataset {
 
 	public HighscoreDataset() {
 		// TODO Auto-generated constructor stub
+	}
+
+
+	@Override
+	public String toString() {
+		return "HighscoreDataset [id=" + id + ", name=" + name + ", moves="
+				+ moves + ", time=" + time + "]";
 	}
 
 

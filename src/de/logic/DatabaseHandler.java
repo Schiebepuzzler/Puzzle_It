@@ -70,7 +70,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	}
 
 	// Getting single scoreSet
-	HighscoreDataset getHighscoreDataset(int id) {
+	public HighscoreDataset getHighscoreDataset(int id) {
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		Cursor cursor = db.query(TABLE_HIGHSCORE, new String[] { KEY_ID,
