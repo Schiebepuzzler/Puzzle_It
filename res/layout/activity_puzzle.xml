@@ -6,7 +6,7 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity" >
 
-    <!-- Header -->
+    <!-- Header pp-->
 
     <RelativeLayout
         android:id="@+id/headerGame"
