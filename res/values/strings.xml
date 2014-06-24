@@ -27,5 +27,10 @@
     <string name="title_activity_splash">Splash</string>
     <string name="load_button">Eigenes Foto laden</string>
     <string name="title_activity_highscore">HighscoreActivity</string>
-
+	<string name="highscore_1">1. Platz</string>
+    <string name="highscore_2">2. Platz</string>
+    <string name="highscore_3">3. Platz</string>
+    <string name="highscore_4">4. Platz</string>
+    <string name="highscore_5">5. Platz</string>
+    
 </resources>
