@@ -32,5 +32,7 @@
     <string name="highscore_3">3. Platz</string>
     <string name="highscore_4">4. Platz</string>
     <string name="highscore_5">5. Platz</string>
+    <string name="alert_gibNamenEin">Bitte gib deinen Namen ein:</string>
+    
     
 </resources>

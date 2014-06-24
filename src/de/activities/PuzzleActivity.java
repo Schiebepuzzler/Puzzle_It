@@ -17,7 +17,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,6 +29,7 @@ import android.hardware.display.DisplayManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,6 +37,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -64,32 +68,37 @@ public class PuzzleActivity extends Activity {
 
 	protected ImageView _imageView;
 
-	
-	
+	protected HighscoreDataset _highscore;
+
+	protected Context _context;
+
+	protected String _returnValue;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_puzzle);
 
-		DatabaseHandler db = new DatabaseHandler(this);
-		
+		final DatabaseHandler db = new DatabaseHandler(this);
+
+		_context = this;
+
 		/*
-		 * How to use Database
-		Log.d("Insert: ", "Inserting .."); 
-		db.addHighscoreDataset(new HighscoreDataset("Marian", 4, "01:00"));
-		db.addHighscoreDataset(new HighscoreDataset("Marcel", 6, "01:12"));
-		db.addHighscoreDataset(new HighscoreDataset("Mirko", 8, "01:30"));
-		
-		
-		Log.d("Read: ", "Reading..");
-		List<HighscoreDataset> scoreSets = db.getAllHighscoreDatasets();       
-        
-        for (HighscoreDataset ss : scoreSets) {
-            String log = "Id: "+ss.getId()+" ,Name: " + ss.getName() + " ,Moves: " + ss.getMoves() + " ,Time:" + ss.getTime();
-                // Writing HighscoreDatasets to log
-        Log.d("Name: ", log);
-		*/
-		
+		 * How to use Database Log.d("Insert: ", "Inserting ..");
+		 * db.addHighscoreDataset(new HighscoreDataset("Marian", 4, "01:00"));
+		 * db.addHighscoreDataset(new HighscoreDataset("Marcel", 6, "01:12"));
+		 * db.addHighscoreDataset(new HighscoreDataset("Mirko", 8, "01:30"));
+		 * 
+		 * 
+		 * Log.d("Read: ", "Reading.."); List<HighscoreDataset> scoreSets =
+		 * db.getAllHighscoreDatasets();
+		 * 
+		 * for (HighscoreDataset ss : scoreSets) { String log =
+		 * "Id: "+ss.getId()+" ,Name: " + ss.getName() + " ,Moves: " +
+		 * ss.getMoves() + " ,Time:" + ss.getTime(); // Writing
+		 * HighscoreDatasets to log Log.d("Name: ", log);
+		 */
+
 		_Time = new GameTimer();
 		_clickCounter = 0;
 
@@ -156,26 +165,86 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeTop",
 										"PuzzleTeil nach oben verschoben");
 								_clickCounter++;
-								_counter.setText(""+_clickCounter);
-								
-								//Prüfen ob das Puzzle fertig ist
-								if(isFinished(bitmapSnippets)){
-									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
-									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
-									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+								_counter.setText("" + _clickCounter);
+
+								// Prüfen ob das Puzzle fertig ist
+								if (isFinished(bitmapSnippets)) {
+									// Das Puzzle Teil rechts unten wieder mit
+									// dem ursprünglichen Bild befüllen und
+									// Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+											.rewhite();
+									imgViewName = "imageView"
+											+ (bitmapSnippets[0].length - 1)
+											+ "_"
+											+ (bitmapSnippets[0].length - 1);
 									_imageView = (ImageView) findViewById(getResources()
 											.getIdentifier(imgViewName, "id",
 													getPackageName()));
-									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
-											.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this, "feddisch",
-											Toast.LENGTH_SHORT).show();
+									_imageView
+											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+													.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this,
+											"feddisch", Toast.LENGTH_SHORT)
+											.show();
+									// HighscoreDataset
+
+									_highscore = new HighscoreDataset(
+											readName(_context), _clickCounter,
+											_Time.getformatedTime());
+									db.addHighscoreDataset(_highscore);
+
 								}
 								return;
 							}
 						}
 					}
 				}
+			}
+
+			public String readName(Context con) {
+
+				LayoutInflater layoutInflater = LayoutInflater.from(con);
+
+				View promptView = layoutInflater
+						.inflate(R.layout.prompts, null);
+
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						con);
+
+				// set prompts.xml to be the layout file of the alertdialog
+				// builder
+				alertDialogBuilder.setView(promptView);
+
+				final EditText input = (EditText) promptView
+						.findViewById(R.id.userInputAlert);
+
+				// setup a dialog window
+				alertDialogBuilder
+						.setCancelable(false)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										// get user input and set it to result
+										_returnValue = input.getText()
+												.toString();
+									}
+								})
+						.setNegativeButton("Cancel",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										dialog.cancel();
+									}
+								});
+
+				// create an alert dialog
+				AlertDialog alertD = alertDialogBuilder.create();
+
+				alertD.show();
+
+				return _returnValue;
 			}
 
 			public void onSwipeRight() {
@@ -228,20 +297,34 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeRight",
 										"PuzzleTeil nach rechts verschoben");
 								_clickCounter++;
-								_counter.setText(""+_clickCounter);
-								
-								//Prüfen ob das Puzzle fertig ist
-								if(isFinished(bitmapSnippets)){
-									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
-									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
-									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+								_counter.setText("" + _clickCounter);
+
+								// Prüfen ob das Puzzle fertig ist
+								if (isFinished(bitmapSnippets)) {
+									// Das Puzzle Teil rechts unten wieder mit
+									// dem ursprünglichen Bild befüllen und
+									// Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+											.rewhite();
+									imgViewName = "imageView"
+											+ (bitmapSnippets[0].length - 1)
+											+ "_"
+											+ (bitmapSnippets[0].length - 1);
 									_imageView = (ImageView) findViewById(getResources()
 											.getIdentifier(imgViewName, "id",
 													getPackageName()));
-									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
-											.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this, "feddisch",
-											Toast.LENGTH_SHORT).show();
+									_imageView
+											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+													.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this,
+											"feddisch", Toast.LENGTH_SHORT)
+											.show();
+									
+									_highscore = new HighscoreDataset(
+											readName(_context), _clickCounter,
+											_Time.getformatedTime());
+									db.addHighscoreDataset(_highscore);
+
 								}
 								return;
 							}
@@ -300,20 +383,33 @@ public class PuzzleActivity extends Activity {
 								Log.d("onSwipeRight",
 										"PuzzleTeil nach links verschoben");
 								_clickCounter++;
-								_counter.setText(""+_clickCounter);
-								
-								//Prüfen ob das Puzzle fertig ist
-								if(isFinished(bitmapSnippets)){
-									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
-									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
-									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+								_counter.setText("" + _clickCounter);
+
+								// Prüfen ob das Puzzle fertig ist
+								if (isFinished(bitmapSnippets)) {
+									// Das Puzzle Teil rechts unten wieder mit
+									// dem ursprünglichen Bild befüllen und
+									// Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+											.rewhite();
+									imgViewName = "imageView"
+											+ (bitmapSnippets[0].length - 1)
+											+ "_"
+											+ (bitmapSnippets[0].length - 1);
 									_imageView = (ImageView) findViewById(getResources()
 											.getIdentifier(imgViewName, "id",
 													getPackageName()));
-									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
-											.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this, "feddisch",
-											Toast.LENGTH_SHORT).show();
+									_imageView
+											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+													.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this,
+											"feddisch", Toast.LENGTH_SHORT)
+											.show();
+									_highscore = new HighscoreDataset(
+											readName(_context), _clickCounter,
+											_Time.getformatedTime());
+									db.addHighscoreDataset(_highscore);
+
 								}
 								return;
 							}
@@ -373,21 +469,34 @@ public class PuzzleActivity extends Activity {
 										"PuzzleTeil nach unten verschoben");
 								_clickCounter++;
 
-								_counter.setText(""+_clickCounter);
-								
-								//Prüfen ob das Puzzle fertig ist
-								if(isFinished(bitmapSnippets)){
-									//Das Puzzle Teil rechts unten wieder mit dem ursprünglichen Bild befüllen und Thread anhalten
-									bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1].rewhite();
-									imgViewName = "imageView" + (bitmapSnippets[0].length-1) + "_" + (bitmapSnippets[0].length-1);
+								_counter.setText("" + _clickCounter);
+
+								// Prüfen ob das Puzzle fertig ist
+								if (isFinished(bitmapSnippets)) {
+									// Das Puzzle Teil rechts unten wieder mit
+									// dem ursprünglichen Bild befüllen und
+									// Thread anhalten
+									bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+											.rewhite();
+									imgViewName = "imageView"
+											+ (bitmapSnippets[0].length - 1)
+											+ "_"
+											+ (bitmapSnippets[0].length - 1);
 									_imageView = (ImageView) findViewById(getResources()
 											.getIdentifier(imgViewName, "id",
 													getPackageName()));
-									_imageView.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length-1][bitmapSnippets[0].length-1]
-											.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this, "feddisch",
-											Toast.LENGTH_SHORT).show();
-									}
+									_imageView
+											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
+													.getPuzzleImage());
+									Toast.makeText(PuzzleActivity.this,
+											"feddisch", Toast.LENGTH_SHORT)
+											.show();
+									_highscore = new HighscoreDataset(
+											readName(_context), _clickCounter,
+											_Time.getformatedTime());
+									db.addHighscoreDataset(_highscore);
+
+								}
 								return;
 							}
 						}
@@ -452,10 +561,8 @@ public class PuzzleActivity extends Activity {
 		 * _TimeRefresh = new Runnable() { public void run(){
 		 * _counter.setText(""+_clickCounter); _handler.postDelayed(this, 1000);
 		 * }
-		 * 
 		 */
-        };
-	
+	};
 
 	@Override
 	protected void onStop() {
@@ -496,54 +603,40 @@ public class PuzzleActivity extends Activity {
 				Uri imageUri = Uri.parse(intent.getStringExtra("imageUri"));
 				bitmapStorage = MediaStore.Images.Media.getBitmap(
 						this.getContentResolver(), imageUri);
-				
-				/** Erst ab API Level 13
-				Display display = getWindowManager().getDefaultDisplay();
-				Point size = new Point();
-				display.getSize(size);
-				int width = size.x;
-				int height = size.y;
-				
-				**/
-				
-				//Seitenverhältnis des geladenen Bildes auslesen und berechnen
+
+				/**
+				 * Erst ab API Level 13 Display display =
+				 * getWindowManager().getDefaultDisplay(); Point size = new
+				 * Point(); display.getSize(size); int width = size.x; int
+				 * height = size.y;
+				 **/
+
+				// Seitenverhältnis des geladenen Bildes auslesen und berechnen
 				double aspectRatioH = bitmapStorage.getHeight();
-			    double aspectRatioW = bitmapStorage.getWidth();
-			    double ratio = aspectRatioH/aspectRatioW;
-			    
-			    // Paramter der Bildschirmgröße und Verhältnis des Bildes ermitteln
-			    Display display = getWindowManager().getDefaultDisplay(); 
+				double aspectRatioW = bitmapStorage.getWidth();
+				double ratio = aspectRatioH / aspectRatioW;
+
+				// Paramter der Bildschirmgröße und Verhältnis des Bildes
+				// ermitteln
+				Display display = getWindowManager().getDefaultDisplay();
 				@SuppressWarnings("deprecation")
-				int width_disp = display.getWidth(); 
+				int width_disp = display.getWidth();
 				int width = (int) (width_disp * ratio);
 				@SuppressWarnings("deprecation")
-				int height_disp = display.getHeight();  
+				int height_disp = display.getHeight();
 				int height = (int) (height_disp * ratio);
 				boolean filter = true;
-				
-				
-				//Ausgabe der Bildkonvertierung-Paramter
-				Log.d("Bildgröße", "Ratio "
-						+ aspectRatioH
-						+ " x "
-						+ aspectRatioW
-						+ " = "
-						+ ratio
-						+ "  Displaymaße "
-						+ height_disp
-						+ " x "
-						+ width_disp
-						+ "  Angepasst "
-						+ height
-						+ " x "
-						+ width);
-				
-				//Bild mit ermittelten Paramtern anpassen
+
+				// Ausgabe der Bildkonvertierung-Paramter
+				Log.d("Bildgröße", "Ratio " + aspectRatioH + " x "
+						+ aspectRatioW + " = " + ratio + "  Displaymaße "
+						+ height_disp + " x " + width_disp + "  Angepasst "
+						+ height + " x " + width);
+
+				// Bild mit ermittelten Paramtern anpassen
 				bitmapFull = Bitmap.createScaledBitmap(bitmapStorage, width,
-			            height, filter);
-				
-				
-	
+						height, filter);
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -658,20 +751,21 @@ public class PuzzleActivity extends Activity {
 	public PuzzlePart[][] getBitmapSnippets() {
 		return this.bitmapSnippets;
 	}
-	
-	public Boolean isFinished(PuzzlePart[][] puzzleTeile){
-		for(int i=0; i<puzzleTeile[0].length;i++){
-			for(int j=0; j<puzzleTeile[0].length;j++){
-				if(puzzleTeile[i][j].isOnOriginPosition()){
+
+	public Boolean isFinished(PuzzlePart[][] puzzleTeile) {
+		for (int i = 0; i < puzzleTeile[0].length; i++) {
+			for (int j = 0; j < puzzleTeile[0].length; j++) {
+				if (puzzleTeile[i][j].isOnOriginPosition()) {
 					Log.d("isFinished", "puzzleTeil ist an richtiger Stelle");
-				}else{
-					Log.d("isFinished", "mindestens ein puzzleTeil ist nicht an richtiger Stelle");
+				} else {
+					Log.d("isFinished",
+							"mindestens ein puzzleTeil ist nicht an richtiger Stelle");
 					return false;
 				}
-				
+
 			}
 		}
-		
+
 		return true;
 	}
 
