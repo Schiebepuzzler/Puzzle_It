@@ -42,7 +42,7 @@ public class HighscoreDataset {
 
 	@Override
 	public String toString() {
-		return name + ": " + moves + "Züge & " + time + " Minuten";
+		return "maslbasl: " + moves + "Züge & " + time + " Minuten";
 	}
 
 

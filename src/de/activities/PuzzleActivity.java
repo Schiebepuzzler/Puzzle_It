@@ -116,10 +116,11 @@ public class PuzzleActivity extends Activity {
 			String imgViewName;
 
 			public void onSwipeTop() {
-				Toast.makeText(PuzzleActivity.this, "top", Toast.LENGTH_SHORT)
-						.show();
-				Log.d("onSwipeTop", "Nachoben gewischt");
-
+				/*
+				 * Toast.makeText(PuzzleActivity.this, "top",
+				 * Toast.LENGTH_SHORT) .show(); Log.d("onSwipeTop",
+				 * "Nachoben gewischt");
+				 */
 				// das leere Puzzleteil ermitteln und dann, falls möglich,
 				// tauschen
 				for (int i = 0; i < bitmapSnippets[0].length; i++) {
@@ -184,9 +185,10 @@ public class PuzzleActivity extends Activity {
 									_imageView
 											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
 													.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this,
-											"feddisch", Toast.LENGTH_SHORT)
-											.show();
+									/*
+									 * Toast.makeText(PuzzleActivity.this,
+									 * "feddisch", Toast.LENGTH_SHORT) .show();
+									 */
 									// HighscoreDataset
 
 									_highscore = new HighscoreDataset(
@@ -227,7 +229,9 @@ public class PuzzleActivity extends Activity {
 									public void onClick(DialogInterface dialog,
 											int id) {
 										// get user input and set it to result
-										_returnValue = (String) input.getText().toString();
+										_returnValue = (String) input.getText()
+												.toString();
+										Log.v("NAME", _returnValue);
 									}
 								})
 						.setNegativeButton("Cancel",
@@ -247,8 +251,10 @@ public class PuzzleActivity extends Activity {
 			}
 
 			public void onSwipeRight() {
-				Toast.makeText(PuzzleActivity.this, "right", Toast.LENGTH_SHORT)
-						.show();
+				/*
+				 * Toast.makeText(PuzzleActivity.this, "right",
+				 * Toast.LENGTH_SHORT) .show();
+				 */
 				Log.d("onSwipeRight", "Nach Rechts gewischt");
 
 				// das leere Puzzleteil ermitteln und dann, falls möglich,
@@ -315,10 +321,10 @@ public class PuzzleActivity extends Activity {
 									_imageView
 											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
 													.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this,
-											"feddisch", Toast.LENGTH_SHORT)
-											.show();
-									
+									/*
+									 * Toast.makeText(PuzzleActivity.this,
+									 * "feddisch", Toast.LENGTH_SHORT) .show();
+									 */
 									_highscore = new HighscoreDataset(
 											readName(_context), _clickCounter,
 											_Time.getformatedTime());
@@ -333,8 +339,10 @@ public class PuzzleActivity extends Activity {
 			}
 
 			public void onSwipeLeft() {
-				Toast.makeText(PuzzleActivity.this, "left", Toast.LENGTH_SHORT)
-						.show();
+				/*
+				 * Toast.makeText(PuzzleActivity.this, "left",
+				 * Toast.LENGTH_SHORT) .show();
+				 */
 				Log.d("onSwipeLeft", "Nach Links gewischt");
 
 				// das leere Puzzleteil ermitteln und dann, falls möglich,
@@ -401,9 +409,10 @@ public class PuzzleActivity extends Activity {
 									_imageView
 											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
 													.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this,
-											"feddisch", Toast.LENGTH_SHORT)
-											.show();
+									/*
+									 * Toast.makeText(PuzzleActivity.this,
+									 * "feddisch", Toast.LENGTH_SHORT) .show();
+									 */
 									_highscore = new HighscoreDataset(
 											readName(_context), _clickCounter,
 											_Time.getformatedTime());
@@ -418,8 +427,10 @@ public class PuzzleActivity extends Activity {
 			}
 
 			public void onSwipeBottom() {
-				Toast.makeText(PuzzleActivity.this, "bottom",
-						Toast.LENGTH_SHORT).show();
+				/*
+				 * Toast.makeText(PuzzleActivity.this, "bottom",
+				 * Toast.LENGTH_SHORT).show();
+				 */
 				Log.d("onSwipeBottom", "Nach unten gewischt");
 
 				// das leere Puzzleteil ermitteln und dann, falls möglich,
@@ -487,9 +498,10 @@ public class PuzzleActivity extends Activity {
 									_imageView
 											.setImageBitmap(bitmapSnippets[bitmapSnippets[0].length - 1][bitmapSnippets[0].length - 1]
 													.getPuzzleImage());
-									Toast.makeText(PuzzleActivity.this,
-											"feddisch", Toast.LENGTH_SHORT)
-											.show();
+									/*
+									 * Toast.makeText(PuzzleActivity.this,
+									 * "feddisch", Toast.LENGTH_SHORT) .show();
+									 */
 									_highscore = new HighscoreDataset(
 											readName(_context), _clickCounter,
 											_Time.getformatedTime());

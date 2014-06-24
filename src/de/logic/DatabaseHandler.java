@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -58,6 +59,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	public void addHighscoreDataset(HighscoreDataset scoreSet) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
+		Log.v("NAME DB IN", scoreSet.getName());
+		
 		ContentValues values = new ContentValues();
 		values.put(KEY_NAME, scoreSet.getName()); // HighscoreDataset Name
 		values.put(KEY_MOVES, scoreSet.getMoves()); // HighscoreDataset Moves
@@ -82,7 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		HighscoreDataset scoreSet = new HighscoreDataset(
 				Integer.parseInt(cursor.getString(0)), cursor.getString(1),
 				Integer.parseInt(cursor.getString(2)), cursor.getString(3));
-		// return scoreSet
+		
 		return scoreSet;
 	}
 
